@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(FollowPath());
+        // StartCoroutine(FollowPath());
     }
 
     private IEnumerator FollowPath()

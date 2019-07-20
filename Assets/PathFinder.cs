@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+
+    [SerializeField] Waypoint startWaypoint, endWaypoint = null;
 
     private void Start() 
     {
@@ -26,8 +26,13 @@ public class PathFinder : MonoBehaviour
             else
             {
                 grid.Add(waypoint.GetGridPos(), waypoint);
+                ColorStartAndEnd(waypoint);
             }
         }
-        print(grid.Count);
+    }
+    private void ColorStartAndEnd(Waypoint waypoint)
+    {
+        startWaypoint.SetTopColor(Color.green);
+        endWaypoint.SetTopColor(Color.red);
     }
 }

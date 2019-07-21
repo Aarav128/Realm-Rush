@@ -45,6 +45,7 @@ public class Pathfinder : MonoBehaviour
             }
         }
     }
+    
     private void ColorStartAndEnd()
     {
         startWaypoint.SetTopColor(Color.green);
@@ -77,7 +78,6 @@ public class Pathfinder : MonoBehaviour
         }
 
         path.Add(startWaypoint);
-
         path.Reverse();
     }
 

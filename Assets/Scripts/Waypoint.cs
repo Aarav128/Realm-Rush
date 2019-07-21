@@ -21,4 +21,10 @@ public class Waypoint : MonoBehaviour
             Mathf.RoundToInt(transform.position.z / gridSize)
         );
     }
+
+    private void OnMouseOver() 
+    {
+        print(gameObject.name);
+        print("hello");
+    }
 }

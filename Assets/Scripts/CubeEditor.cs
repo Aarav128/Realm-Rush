@@ -16,7 +16,7 @@ public class CubeEditor : MonoBehaviour
     private void Update()
     {
         SnapToGrid();
-        UpdateLabel();
+        UpdateName();
     }
 
     private void SnapToGrid()
@@ -30,14 +30,12 @@ public class CubeEditor : MonoBehaviour
         );
     }
 
-    private void UpdateLabel()
+    private void UpdateName()
     {
-        TextMesh textMesh = GetComponentInChildren<TextMesh>();
-        string labelText = 
+        string nameText = 
             waypoint.GetGridPos().x + 
             ", " +
             waypoint.GetGridPos().y;
-        textMesh.text = labelText;
-        gameObject.name = labelText;
+        gameObject.name = nameText;
     }
 }

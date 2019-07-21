@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] Transform objectToPan;
-    [SerializeField] Transform targetEnemy;
-    [SerializeField] ParticleSystem projectileParticles;
+    [SerializeField] Transform objectToPan = null;
+    [SerializeField] Transform targetEnemy = null;
+    [SerializeField] ParticleSystem projectileParticles = null;
     [SerializeField] float attackRange = 10f;
 
     private void Update()
@@ -18,7 +17,7 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            Shoot(false); // Don't shoot if there isn't an enemy
+            Shoot(false);
         }
     }
 

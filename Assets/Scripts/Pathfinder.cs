@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
-    [SerializeField] Waypoint startWaypoint, endWaypoint;
+    [SerializeField] Waypoint startWaypoint = null;
+    [SerializeField] Waypoint endWaypoint = null;
 
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     Queue<Waypoint> queue = new Queue<Waypoint>();
     List<Waypoint> path = new List<Waypoint>();
 
     bool isRunning = true;
-    Waypoint searchCenter;
+    Waypoint searchCenter = null;
 
     Vector2Int[] directions = 
     {
@@ -22,14 +23,21 @@ public class Pathfinder : MonoBehaviour
 
     public List<Waypoint> GetPath()
     {
-        LoadBlocks();
-        ColorStartAndEnd();
-        BreadthFirstSearch();
-        CreatePath();
+        if (path.Count == 0)
+        {
+            CalculatePath();
+        }
         return path;
     }
 
-    private void LoadBlocks()
+    private void CalculatePath()
+    {
+        LoadWaypoints();
+        BreadthFirstSearch();
+        CreatePath();
+    }
+
+    private void LoadWaypoints()
     {
         var waypoints = FindObjectsOfType<Waypoint>();
         foreach (Waypoint waypoint in waypoints)
@@ -44,12 +52,6 @@ public class Pathfinder : MonoBehaviour
                 grid.Add(waypoint.GetGridPos(), waypoint);
             }
         }
-    }
-    
-    private void ColorStartAndEnd()
-    {
-        startWaypoint.SetTopColor(Color.green);
-        endWaypoint.SetTopColor(Color.red);
     }
 
     private void BreadthFirstSearch()

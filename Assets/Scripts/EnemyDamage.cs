@@ -6,13 +6,18 @@ public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] int hitPoints = 25;
 
-    private void OnParticleCollision(GameObject other) 
+    private void OnParticleCollision(GameObject other)
     {
-        hitPoints--;
+        ProcessHit();
         if (hitPoints <= 0)
         {
-            KillEnemy(); // kill the enemy if it loses all its health
+            KillEnemy();
         }
+    }
+
+    private void ProcessHit()
+    {
+        hitPoints--;
     }
 
     private void KillEnemy()

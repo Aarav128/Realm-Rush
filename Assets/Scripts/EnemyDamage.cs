@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] int hitPoints = 25;
+    [SerializeField] int hitPoints = 10;
 
     private void OnParticleCollision(GameObject other)
     {

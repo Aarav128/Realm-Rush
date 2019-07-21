@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    // Parameters of each tower
     [SerializeField] Transform objectToPan = null;
-    [SerializeField] Transform targetEnemy = null;
     [SerializeField] ParticleSystem projectileParticles = null;
     [SerializeField] float attackRange = 10f;
 
+    // State of each tower
+    Transform targetEnemy = null;
+
     private void Update()
     {
-        if (targetEnemy != null)
+        SetTargetEnemy();
+        if (targetEnemy)
         {
             FireAtEmemy();
         }
@@ -21,11 +25,31 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void SetTargetEnemy()
     {
-        // Display the attack range when selected
-        Gizmos.color = Color.gray;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        var sceneEnemies = FindObjectsOfType<EnemyDamage>();
+        if (sceneEnemies.Length == 0) return; // Check if there are any enemies
+
+        Transform closestEnemy = sceneEnemies[0].transform;
+
+        foreach (EnemyDamage testEnemy in sceneEnemies)
+        {
+            closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+        }
+        targetEnemy = closestEnemy;
+    }
+
+    private Transform GetClosest(Transform transformA, Transform transformB)
+    {
+        var distToA = Vector3.Distance(transform.position, transformA.position);
+        var distToB = Vector3.Distance(transform.position, transformB.position);
+
+        if (distToA < distToB)
+        {
+            return transformA;
+        }
+
+        return transformB;
     }
 
     private void FireAtEmemy()
@@ -44,7 +68,13 @@ public class Tower : MonoBehaviour
 
     private void Shoot(bool isActive)
     {
-        ParticleSystem.EmissionModule emissionModule = projectileParticles.emission;
+        var emissionModule = projectileParticles.emission;
         emissionModule.enabled = isActive;
+    }
+
+    private void OnDrawGizmosSelected() // Shows range
+    {
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

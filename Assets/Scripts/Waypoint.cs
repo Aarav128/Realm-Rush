@@ -3,9 +3,11 @@
 public class Waypoint : MonoBehaviour
 {
     public bool isExplored = false;
+    public bool isPlaceable = true;
     public Waypoint exploredFrom;
 
-    Vector2Int gridPos;
+    [SerializeField] GameObject towerPrefab = null;
+
     const int gridSize = 10;
 
     public int GetGridSize()
@@ -24,7 +26,17 @@ public class Waypoint : MonoBehaviour
 
     private void OnMouseOver() 
     {
-        print(gameObject.name);
-        print("hello");
+        if (Input.GetMouseButtonDown(0)) // left click
+        {
+            if (isPlaceable)
+            {
+                Instantiate(towerPrefab, transform.position, Quaternion.identity);
+                isPlaceable = false;
+            }
+            else
+            {
+                print("Can't place here");
+            }
+        }
     }
 }

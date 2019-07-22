@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    // Parameters of each tower
+    public Waypoint baseWaypoint; // what the tower is standing on
+    
     [SerializeField] Transform objectToPan = null;
     [SerializeField] ParticleSystem projectileParticles = null;
     [SerializeField] float attackRange = 10f;

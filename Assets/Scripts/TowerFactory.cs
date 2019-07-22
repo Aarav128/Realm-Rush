@@ -7,10 +7,11 @@ public class TowerFactory : MonoBehaviour
     [SerializeField] GameObject towerPrefab = null;
     [SerializeField] int towerLimit = 5;
 
+    Queue<Tower> towerQueue = new Queue<Tower>();
+
     public void AddTower(Waypoint baseWaypoint)
     {
-        var towers = FindObjectsOfType<Tower>();
-        int numTowers = towers.Length;
+        int numTowers = towerQueue.Count;
 
         if (numTowers < towerLimit)
         {
@@ -18,18 +19,33 @@ public class TowerFactory : MonoBehaviour
         }
         else
         {
-            MoveExistingTower();
+            MoveExistingTower(baseWaypoint);
         }
     }
 
     private void InstantiateNewTower(Waypoint baseWaypoint)
     {
-        Instantiate(towerPrefab, baseWaypoint.transform.position, Quaternion.identity);
+        Tower tower = Instantiate(towerPrefab, baseWaypoint.transform.position, Quaternion.identity).GetComponent<Tower>();
         baseWaypoint.isPlaceable = false;
+        tower.baseWaypoint = baseWaypoint;
+
+        towerQueue.Enqueue(tower);
     }
 
-    private void MoveExistingTower()
+    private void MoveExistingTower(Waypoint newBaseWaypoint)
     {
-        print("Max towers reached"); // TODO actually move
+        Tower oldTower = towerQueue.Dequeue();
+        ChangeTowerWaypoint(newBaseWaypoint, oldTower);
+
+        oldTower.transform.position = newBaseWaypoint.transform.position;
+    }
+
+    private void ChangeTowerWaypoint(Waypoint newBaseWaypoint, Tower tower)
+    {
+        tower.baseWaypoint.isPlaceable = true;
+        newBaseWaypoint.isPlaceable = false;
+        tower.baseWaypoint = newBaseWaypoint;
+        
+        towerQueue.Enqueue(tower);
     }
 }

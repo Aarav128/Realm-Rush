@@ -3366,7 +3366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e219cee59f89841969985d52da28153c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenSpawns: 5
+  secondsBetweenSpawns: 6.5
   enemyPrefab: {fileID: 114941686308246830, guid: 04f81ff9814844ccfa08226f8d46a3f4,
     type: 3}
 --- !u!1001 &1468903422
@@ -3864,7 +3864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 1086576897344099647, guid: eb967dfe97ac949faabdb3e58991f169,
     type: 3}
-  towerLimit: 5
+  towerLimit: 3
 --- !u!1001 &1768244044
 PrefabInstance:
   m_ObjectHideFlags: 0

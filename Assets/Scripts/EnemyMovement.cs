@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float movementPerFrame = 0.1f;
     [SerializeField] float waypointDwellTime = 1f;
+    [SerializeField] ParticleSystem goalParticle = null;
 
     private void Start() 
     {
@@ -19,9 +20,10 @@ public class EnemyMovement : MonoBehaviour
     {
         foreach (Waypoint waypoint in path)
         {
-            yield return StartCoroutine(MoveTowardsWaypoint(waypoint)); // wait until enemy moves to next waypoint
             yield return new WaitForSeconds(waypointDwellTime); // dwell on a waypoint for a little while
+            yield return StartCoroutine(MoveTowardsWaypoint(waypoint)); // wait until enemy moves to next waypoint
         }
+        SelfDestruct();
     }
 
     private IEnumerator MoveTowardsWaypoint(Waypoint waypoint)
@@ -33,5 +35,13 @@ public class EnemyMovement : MonoBehaviour
 
             yield return null; // wait until next frame
         }
+    }
+    
+    private void SelfDestruct()
+    {
+        var vfx = Instantiate(goalParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        Destroy(vfx.gameObject, vfx.main.duration);
+
+        Destroy(gameObject);
     }
 }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1224230665197519904}
   - component: {fileID: 1224230665197519919}
-  - component: {fileID: 1224230665197519905}
+  - component: {fileID: 3638680056742145032}
   m_Layer: 0
-  m_Name: PersistentObject
+  m_Name: Music Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.4
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -128,7 +128,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1224230665197519905
+--- !u!114 &3638680056742145032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

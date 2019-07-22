@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PersistentObject : MonoBehaviour
+public class MusicPlayer : MonoBehaviour
 {
     static bool hasBeenSpawned = false;
     private void Awake() 

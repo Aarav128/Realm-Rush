@@ -47,6 +47,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void ChangeScore(int scoreChange)
     {
-        score += scoreChange;
+        score = Mathf.Max(0, score + scoreChange);
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }

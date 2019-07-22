@@ -13,21 +13,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 17.8, y: 15.9, z: 19.64}
   m_Center: {x: -11.5, y: 31.5, z: 0}
---- !u!114 &826226233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5704120814676409352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe3e092be6244f36829df2493e134a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  healthText: {fileID: 0}
-  enemyReachedSFX: {fileID: 8300000, guid: dcf092a51fcf943ff8442b4c0136d524, type: 3}
 --- !u!82 &3326040026032964314
 AudioSource:
   m_ObjectHideFlags: 0
@@ -124,6 +109,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &826226233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704120814676409352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3e092be6244f36829df2493e134a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  healthText: {fileID: 0}
+  enemyReachedSFX: {fileID: 8300000, guid: dcf092a51fcf943ff8442b4c0136d524, type: 3}
+  gameOverSceneBuildIndex: 2
+--- !u!114 &4811991423406164855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704120814676409352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee616a152d3b4991bdca4164daefb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5705782503894516304
 PrefabInstance:
   m_ObjectHideFlags: 0

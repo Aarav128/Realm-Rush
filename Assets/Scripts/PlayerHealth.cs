@@ -30,7 +30,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        enemySpawner.ChangeScore(-10);
         GetComponent<AudioSource>().PlayOneShot(enemyReachedSFX);
         health = Mathf.Max(0, health - 1);
 

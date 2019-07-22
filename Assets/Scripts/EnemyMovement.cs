@@ -22,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
         foreach (Waypoint waypoint in path)
         {
             yield return new WaitForSeconds(waypointDwellTime); // dwell on a waypoint for a little while
-            yield return StartCoroutine(MoveTowardsWaypoint(waypoint)); // wait until enemy moves to next waypoint
+            yield return MoveTowardsWaypoint(waypoint); // wait until enemy moves to next waypoint
         }
         SelfDestruct();
     }

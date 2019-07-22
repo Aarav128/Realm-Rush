@@ -45,11 +45,6 @@ public class EnemySpawner : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot(enemySpawnSFX);
     }
 
-    public void ChangeScore(int scoreChange)
-    {
-        score = Mathf.Max(0, score + scoreChange);
-    }
-
     public int GetScore()
     {
         return score;

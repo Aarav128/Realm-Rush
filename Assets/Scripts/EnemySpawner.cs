@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Range(0.1f, 120f)]
-    [SerializeField] float secondsBetweenSpawns = 5f;
+    [SerializeField] float secondsBetweenSpawns = 6.5f;
     [SerializeField] EnemyMovement enemyPrefab = null;
 
     private void Start() 
@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
         {
             while (true) // forever
             {
-                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                Instantiate(enemyPrefab, transform.position, Quaternion.identity, transform);
                 yield return new WaitForSeconds(secondsBetweenSpawns);
             }
     }

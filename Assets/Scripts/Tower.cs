@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ public class Tower : MonoBehaviour
     [SerializeField] ParticleSystem projectileParticles = null;
     [SerializeField] float attackRange = 10f;
 
-    // State of each tower
     Transform targetEnemy = null;
 
     private void Update()

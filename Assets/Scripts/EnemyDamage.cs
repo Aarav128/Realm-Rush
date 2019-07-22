@@ -25,7 +25,9 @@ public class EnemyDamage : MonoBehaviour
 
     private void KillEnemy()
     {
-        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
+        var vfx = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        Destroy(vfx.gameObject, vfx.main.duration);
+
         Destroy(gameObject);
     }
 }

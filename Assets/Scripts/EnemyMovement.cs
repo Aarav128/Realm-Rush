@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator FollowPath(List<Waypoint> path)
     {
+        transform.position = path[0].transform.position;
         foreach (Waypoint waypoint in path)
         {
             yield return new WaitForSeconds(waypointDwellTime); // dwell on a waypoint for a little while

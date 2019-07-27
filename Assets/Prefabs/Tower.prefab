@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4501ae00e1e874ea0a73ff96531992c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseWaypoint: {fileID: 0}
   objectToPan: {fileID: 6583761000840436843}
   projectileParticles: {fileID: 430606059105315765}
   attackRange: 30
+  turnSpeed: 3
 --- !u!1 &4441138284010888028
 GameObject:
   m_ObjectHideFlags: 0

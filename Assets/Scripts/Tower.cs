@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
     public Waypoint baseWaypoint; // what the tower is standing on
-    
+
     [SerializeField] Transform objectToPan = null;
     [SerializeField] ParticleSystem projectileParticles = null;
     [SerializeField] float attackRange = 10f;
+    [SerializeField] float turnSpeed = 5f;
 
     Transform targetEnemy = null;
 
@@ -58,7 +56,7 @@ public class Tower : MonoBehaviour
         float distanceToEnemy = Vector3.Distance(targetEnemy.position, transform.position);
         if (distanceToEnemy <= attackRange)
         {
-            objectToPan.LookAt(targetEnemy);
+            FaceTarget();
             Shoot(true);
         }
         else
@@ -71,6 +69,13 @@ public class Tower : MonoBehaviour
     {
         var emissionModule = projectileParticles.emission;
         emissionModule.enabled = isActive;
+    }
+
+    private void FaceTarget()
+    {
+        Vector3 direction = (targetEnemy.position - objectToPan.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        objectToPan.rotation = Quaternion.Slerp(objectToPan.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
     private void OnDrawGizmosSelected() // Shows range

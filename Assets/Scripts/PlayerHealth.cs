@@ -10,22 +10,20 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] AudioClip enemyReachedSFX = null;
     [SerializeField] int gameOverSceneBuildIndex;
 
-    EnemySpawner enemySpawner = null;
+    [SerializeField] EnemySpawner enemySpawner = null;
     int finalScore;
 
     private void Awake() 
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Start() 
+    private void Update()
     {
-        enemySpawner = FindObjectOfType<EnemySpawner>();
-    }
-
-    private void Update() 
-    {
-        healthText.text = "Health: " + health.ToString();
+        if (health > 0)
+        {
+            healthText.text = "Health: " + health.ToString();
+        }
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -41,14 +39,12 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator GameOver()
     {
-        yield return StartCoroutine(GetComponent<SceneLoader>().LoadSceneAsync(gameOverSceneBuildIndex, 1f));
         ResetToNewScene();
+        yield return StartCoroutine(GetComponent<SceneLoader>().LoadSceneAsync(gameOverSceneBuildIndex, 1f));
 
         TextMeshProUGUI scoreText = FindObjectOfType<ScoreText>().GetComponent<TextMeshProUGUI>();
-        if (scoreText != null)
-        {
-            scoreText.text = finalScore.ToString();
-        }
+        scoreText.text = finalScore.ToString();
+        yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
 
@@ -59,3 +55,4 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
     }
 }
+ 
